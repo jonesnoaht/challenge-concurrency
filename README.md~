@@ -1,0 +1,5 @@
+# Concurrency Challenge
+
+## Setup
+
+Download the [plutus repository](https://www.github.com/input-output-hk/plutus) and start a nix shell with `nix-shell`.
