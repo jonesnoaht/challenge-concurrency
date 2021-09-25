@@ -96,12 +96,20 @@ instance Eq ResultAcc where
 
 mkGoldValidator :: DatumHash -> GoldParams -> Integer -> BuiltinData -> ScriptContext -> Bool
 mkGoldValidator h gp _ _ ctx
-  | oldNFT == 1 =                              -- Are we validating the "special" UTxO carrying the state?
-      (txOutDatumHash ownOutput == Just h)  && -- The datum of the "updated" UTxO should be 0.
-      (newNFT == 1)                         && -- The "updated" UTxO must contain the NFT.
+  | oldNFT == 1 =                              -- Are we validating
+                                               -- the "special" UTxO
+                                               -- carrying the state?
+      (txOutDatumHash ownOutput == Just h)  && -- The datum of the
+                                               -- "updated" UTxO
+                                               -- should be 0.
+      (newNFT == 1)                         && -- The "updated" UTxO
+                                               -- must contain the
+                                               -- NFT.
       validCounters
 
-  | otherwise   = True                         -- If we don't have the UTxO with the NFT, we don't care.
+  | otherwise   = True                         -- If we don't have the
+                                               -- UTxO with the NFT,
+                                               -- we don't care.
 
   where
     ctxInfo :: TxInfo
@@ -145,21 +153,13 @@ mkGoldValidator h gp _ _ ctx
     !inVal  = txOutValue ownInput
     !outVal = txOutValue ownOutput
 
-    oldNFT, newNFT, oldCounter, newCounter, oldVotes, newVotes, finalCounter, voteCount, fees :: Integer
+    oldNFT, newNFT, fees :: Integer
     !oldNFT       = assetClassValueOf inVal  nftAC
     !newNFT       = assetClassValueOf outVal nftAC
-    !oldCounter   = assetClassValueOf inVal  counterAC
-    !newCounter   = assetClassValueOf outVal counterAC
-    !oldVotes     = assetClassValueOf inVal  votesAC
-    !newVotes     = assetClassValueOf outVal votesAC
-    !finalCounter = (gpSeed gp + oldCounter) `modInteger` gpNameCount gp
-    !voteCount    = gpVoteCount gp
     !fees         = gpFee gp
 
     nftAC, counterAC, votesAC, lovelace :: AssetClass
     !nftAC     = gpNFT     gp
-    !counterAC = gpCounter gp
-    !votesAC   = gpVotes   gp
     !lovelace  = AssetClass (adaSymbol, adaToken)
 
     requests :: ResultAcc

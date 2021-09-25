@@ -73,6 +73,8 @@ import           Plutus.Contracts.Currency as Currency
 import           Prelude                   (Semigroup (..), Show (..), String)
 import qualified Prelude
 
+import PAB.RequestGoldScript
+
 data Intake = Intake
   { iSymbol   :: !CurrencySymbol
     , iOperator :: !PubKeyHash
