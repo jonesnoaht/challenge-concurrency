@@ -1,0 +1,5 @@
+-- The Trinkets should come in and then be melted to gold. The
+-- trinkets need to be burned. The gold then needs to be minted. There
+-- should be a minting policy that only allows gold to be burned if
+-- trinkets are minted.
+
