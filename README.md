@@ -31,7 +31,18 @@ We use quickcheck to provide the property-based testing solution that
 ensures that all patterns are accepted and end in trinkets being
 burned and gold being minted and sent to the original wallets.
 
-I have failed to finish.
+I may have failed to finish.
+
+## Details
+
+### Setup
+
+1. Create the TrinketBox NFT to receive trinkets.
+2. Start the PAB, which checks the TrinketBox for trinkets and creates batches.
+
+### TrinketBox
+
+
 
 ## Notes to Self
 

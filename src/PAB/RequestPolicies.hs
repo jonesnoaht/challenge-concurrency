@@ -7,8 +7,6 @@ module PAB.RequestPolicies
   ( apiNFTMintScript
   , apiOtherMintScript
   , nftTokenName
-  , counterTokenName
-  , votesTokenName
   , otherPolicy
   ) where
 
@@ -40,10 +38,8 @@ mkNFTPolicy tn utxo _ ctx = traceIfFalse "UTxO not consumed"   hasUTxO          
         [(_, tn', amt)] -> tn' == tn && amt == 1
         _               -> False
 
-nftTokenName, counterTokenName, votesTokenName :: TokenName
+nftTokenName :: TokenName
 nftTokenName = "RequestNFT"
-counterTokenName = "RequestCounter"
-votesTokenName = "RequestVotes"
 
 nftPolicy :: TxOutRef -> Scripts.MintingPolicy
 nftPolicy utxo = mkMintingPolicyScript $
